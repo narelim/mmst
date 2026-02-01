@@ -4,6 +4,7 @@
 const SAVE_KEY = "memory_stage_save_v1";
 const STAGE_ORDER = ["stage1", "stage2", "stage3", "stage4", "boss"];
 const $ = (id) => document.getElementById(id);
+const ATTR_LABEL = { erosion: "침식", anchor: "고정", echo: "잔향" };
 
 // =======================
 // CSV 로딩
@@ -208,7 +209,9 @@ HP: ${state.enemy.hp}/${state.enemy.maxHp}
   db.cards.forEach(card => {
     const btn = document.createElement("button");
     btn.className = "choiceBtn";
-    btn.textContent = `${db.charName[card.character_id]} · ${card.card_name}`;
+    const a1 = ATTR_LABEL[card.attr1] ?? "-";
+    const a2 = card.attr2 ? (ATTR_LABEL[card.attr2] ?? "-") : "-";
+    btn.textContent = `${db.charName[card.character_id]} · ${card.card_name}  [${a1}/${a2}]`;
     btn.onclick = () => onChooseCard(state, db, card);
     $("choices").appendChild(btn);
   });
@@ -240,6 +243,8 @@ function onChooseCard(state, db, card) {
   const charId = card.character_id;
   const attitude = db.charactersById[charId].attitude;
   const attr = resolveActiveAttr(card, attitude);
+  const p = ATTR_LABEL[predicted] ?? predicted;
+btn.textContent += ` → ${p}`;
 
   addLog(`【기록】${db.charName[charId]}: ${card.card_name}`);
   addLog(`【개입: ${attr}】${card.desc}`);
