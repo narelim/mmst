@@ -126,9 +126,21 @@ function checkEnd(state) {
 }
 
 function nextTurn(state) {
-  state.battle.turn += 1;
-  // 적의 “압박” 같은 간단 룰(턴마다 불안정도 조금 상승)
-  state.battle.collapse = Math.min(state.battle.collapseLimit, state.battle.collapse + 5);
+function applyEnemyPattern(state, pattern) {
+  if (pattern.effect.startsWith("collapse+")) {
+    const v = Number(pattern.effect.split("+")[1]);
+    state.battle.collapse = Math.min(
+      state.battle.collapseLimit,
+      state.battle.collapse + v
+    );
+    addLog(`【왜곡】${pattern.desc}`);
+  }
+
+  if (pattern.effect === "echo+1") {
+    state.enemy.echoStacks += 1;
+    addLog(`【반복】잔향이 증폭된다.`);
+  }
+}
 }
 
 function onChooseCard(state, db, card) {
@@ -163,10 +175,14 @@ function onChooseCard(state, db, card) {
     loadCSV("data/character_cards.csv"),
     loadCSV("data/characters.csv"),
     loadCSV("data/battles.csv"),
+    loadCSV("/data/enemies.csv"),
   ]);
 
   const charactersById = Object.fromEntries(characters.map(c => [c.id, c]));
   const battlesById = Object.fromEntries(battles.map(b => [b.id, b]));
+  const enemiesById = Object.fromEntries(
+  enemies.map(e => [e.enemy_id, e])
+);
 
   const charName = {};
   for (const c of characters) charName[c.id] = c.name;
@@ -175,11 +191,33 @@ function onChooseCard(state, db, card) {
     cards,
     charactersById,
     battlesById,
+    enemiesById,
     charName,
   };
-
+  
   // battle maxTurn 동기화
   const state = loadState();
+  state.enemy = {
+  id: "distorted_core",
+  name: enemyData.name,
+  hp: enemyData.max_hp,
+  maxHp: enemyData.max_hp,
+  pattern: enemyData.pattern
+};
+  // 적 초기화 (처음 시작할 때만)
+if (!state.enemy || !state.enemy.id) {
+  const enemyId = "distorted_core"; // 임시: 기본 적
+  const enemyData = db.enemiesById[enemyId];
+
+  state.enemy = {
+    id: enemyId,
+    name: enemyData.name,
+    hp: Number(enemyData.max_hp),
+    maxHp: Number(enemyData.max_hp),
+    pattern: enemyData.pattern,
+    echoStacks: 0
+  };
+}
   const b = battlesById[state.battle.id];
   if (b) {
     state.battle.maxTurn = Number(b.max_turn);
