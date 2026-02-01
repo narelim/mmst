@@ -1,0 +1,5 @@
+pattern_id,name,effect,desc
+pressure,압박,collapse+10,기억이 점점 불안정해진다
+echo_loop,잔향 반복,echo+1,같은 장면이 되풀이된다
+anchor_lock,고정 봉쇄,anchor_seal,개입이 막힌다
+collapse_push,붕괴 가속,collapse+20,현실과의 간극이 벌어진다
