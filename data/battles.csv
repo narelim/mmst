@@ -1,3 +1,6 @@
-id,name,max_turn,collapse_limit
-purify,정화전,5,100
-halt,저지전,3,80
+id,name,max_turn,collapse_limit,enemy_id,is_boss
+stage1,정화전 1,5,100,distorted_core,0
+stage2,정화전 2,5,100,loop_fragment,0
+stage3,저지전,3,80,anchor_guard,0
+stage4,정화전 4,5,100,collapse_beast,0
+boss,보스 스테이지,6,100,boss_mask,1
