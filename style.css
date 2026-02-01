@@ -1,0 +1,15 @@
+:root { --bg:#0b0c10; --fg:#e7e7ea; --dim:#a9a9b2; --panel:#12131a; --line:#242635; }
+body { margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:var(--bg); color:var(--fg); }
+.top { padding:14px 16px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:12px; }
+.grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; padding:12px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px; }
+.panel h2 { margin:0 0 8px; font-size:14px; color:var(--dim); }
+pre { margin:0; white-space:pre-wrap; }
+.log { grid-column: 1 / span 2; }
+#log { display:flex; flex-direction:column; gap:6px; }
+.logline { padding:8px 10px; border:1px dashed var(--line); border-radius:8px; color:var(--fg); }
+.actions { position:sticky; bottom:0; background:linear-gradient(transparent, rgba(11,12,16,.95) 35%, rgba(11,12,16,1)); padding:12px; border-top:1px solid var(--line); }
+#choices { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+.choiceBtn { background:#1a1b24; color:var(--fg); border:1px solid var(--line); border-radius:10px; padding:10px 12px; cursor:pointer; }
+.choiceBtn:hover { border-color:#3a3f5c; }
+#resetBtn { background:transparent; color:var(--dim); border:1px solid var(--line); border-radius:10px; padding:8px 10px; cursor:pointer; }
