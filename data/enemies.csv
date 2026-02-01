@@ -1,0 +1,6 @@
+enemy_id,name,type,max_hp,base_pressure,patterns,desc
+distorted_core,왜곡된 기억핵,core,200,5,pressure,기억이 스스로를 덮어쓴다
+loop_fragment,루프 파편,fragment,130,3,echo_loop,끝나지 않은 장면이 되풀이된다
+anchor_guard,고정 수호체,guard,180,4,anchor_lock,기록을 강제로 유지하려 든다
+collapse_beast,붕괴 징후,omen,160,6,collapse_push,현실과 기억의 간극이 벌어진다
+boss_mask,가면의 감독,boss,260,6,pressure|echo_loop|anchor_lock,무대는 스스로를 연출한다

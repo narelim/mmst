@@ -1,5 +1,0 @@
-enemy_id,name,type,max_hp,base_pressure,pattern,desc
-distorted_core,왜곡된 기억핵,core,200,5,pressure,기억이 스스로를 덮어쓴다
-loop_fragment,루프 파편,fragment,120,3,echo_loop,끝나지 않은 장면
-anchor_guard,고정 수호체,guard,180,4,anchor_lock,기록을 강제로 유지한다
-collapse_beast,붕괴 징후,omen,150,6,collapse_push,현실을 흔든다
