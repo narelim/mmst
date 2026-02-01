@@ -1,5 +1,25 @@
 const SAVE_KEY = "memory_stage_save_v1";
-const ENEMY_ORDER = ["distorted_core", "loop_fragment", "anchor_guard", "collapse_beast", "boss_mask"];
+const STAGE_ORDER = ["stage1","stage2","stage3","stage4","boss"];
+
+function startNextBattle(state, db) {
+  state.progress = state.progress || { stageIndex: 0 };
+  state.progress.stageIndex = Math.min(state.progress.stageIndex + 1, STAGE_ORDER.length - 1);
+
+  const nextBattleId = STAGE_ORDER[state.progress.stageIndex];
+  const b = db.battlesById[nextBattleId];
+
+  // 전투 설정
+  state.battle.id = nextBattleId;
+  state.battle.turn = 1;
+  state.battle.maxTurn = Number(b.max_turn);
+  state.battle.collapseLimit = Number(b.collapse_limit);
+  state.battle.collapse = 40;
+
+  // 적 설정 (보스는 boss 스테이지만!)
+  initEnemy(state, db, b.enemy_id);
+
+  addLog(`【전환】${b.name}: ${state.enemy.name}`);
+}
 
 // ---------- CSV 파서(간단 버전) ----------
 function parseCSV(text) {
@@ -23,8 +43,8 @@ async function loadCSV(path) {
 // ---------- 게임 상태 ----------
 function defaultState() {
   return {
-    progress: { enemyIndex: 0 },
-    battle: { id: "purify", turn: 1, maxTurn: 5, collapse: 60, collapseLimit: 100 },
+    progress: { stageIndex: 0 },
+    battle: { id: "stage1", turn: 1, maxTurn: 5, collapse: 60, collapseLimit: 100 },
     enemy: { name: "왜곡된 기억", hp: 200, echoStacks: 2 },
     party: {
       adel: { level: 1, hp: 120 },
