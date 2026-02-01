@@ -1,0 +1,6 @@
+card_id,character_id,card_name,attr1,attr2,desc
+adel_origin,adel,아델 오리지널,erosion,echo,본래의 기억. 흔들리지만 남아 있다.
+adel_mermaid,adel,아델 인어,echo,echo,반복되는 잔향. 결정이 유예된다.
+adel_villain,adel,아델 빌런,erosion,,왜곡을 강행한다.
+estel_origin,estel,에스델 오리지널,anchor,echo,봉합과 잔향의 균형.
+vanessa_origin,vanessa,바네사 오리지널,echo,erosion,훔친 기억이 오히려 흔적을 남긴다.
