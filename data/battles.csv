@@ -1,0 +1,3 @@
+id,name,max_turn,collapse_limit
+purify,정화전,5,100
+halt,저지전,3,80
