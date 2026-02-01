@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Memory Stage (Text Prototype)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div id="battleTitle">전투: -</div>
+    <div id="battleMeta">턴 - / 불안정도 -%</div>
+  </header>
+
+  <main class="grid">
+    <section class="panel">
+      <h2>적</h2>
+      <pre id="enemyPanel"></pre>
+    </section>
+
+    <section class="panel">
+      <h2>아군</h2>
+      <pre id="partyPanel"></pre>
+    </section>
+
+    <section class="panel log">
+      <h2>기록</h2>
+      <div id="log"></div>
+    </section>
+  </main>
+
+  <footer class="actions">
+    <div id="choices"></div>
+    <button id="resetBtn">세이브 초기화</button>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
